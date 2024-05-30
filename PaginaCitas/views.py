@@ -53,14 +53,20 @@ def Login(request):
             return render(request, 'PaginaCitas/Login.html', {'error_message': error_message})
     return render(request, "PaginaCitas/Login.html")
 
+from django.http import HttpResponseServerError
+
 def Register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False) 
-            user.set_password(form.cleaned_data['password'])  # Establecer la contraseña para el usuario
-            user.save()  # Guardar el usuario en la base de datos
-            return redirect('login')  # Redirigir al usuario al inicio de sesión después de que se haya registrado correctamente
+            try:
+                user = form.save(commit=False) 
+                user.set_password(form.cleaned_data['password'])  # Establecer la contraseña para el usuario
+                user.save()  # Guardar el usuario en la base de datos
+                return redirect('login')  # Redirigir al usuario al inicio de sesión después de que se haya registrado correctamente
+            except Exception as e:
+                # Devuelve una respuesta de error 500 con información sobre la excepción
+                return HttpResponseServerError(f"Error: {e}")
     else:
         form = UserRegistrationForm()
     
