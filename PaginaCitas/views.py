@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from .forms import UserRegistrationForm
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseServerError
 
 
 # Create your views here.
@@ -53,7 +54,7 @@ def Login(request):
             return render(request, 'PaginaCitas/Login.html', {'error_message': error_message})
     return render(request, "PaginaCitas/Login.html")
 
-from django.http import HttpResponseServerError
+import traceback
 
 def Register(request):
     if request.method == 'POST':
@@ -65,8 +66,8 @@ def Register(request):
                 user.save()  # Guardar el usuario en la base de datos
                 return redirect('login')  # Redirigir al usuario al inicio de sesión después de que se haya registrado correctamente
             except Exception as e:
-                # Devuelve una respuesta de error 500 con información sobre la excepción
-                return HttpResponseServerError(f"Error: {e}")
+                traceback.print_exc()  # Imprime la traza de la pila del error en la consola del servidor
+                return HttpResponseServerError("Error interno del servidor. Por favor, inténtelo de nuevo más tarde.")
     else:
         form = UserRegistrationForm()
     
