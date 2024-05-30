@@ -14,7 +14,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'default-secret-key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://djangomodular.onrender.com']
+ALLOWED_HOSTS = ['djangomodular.onrender.com']
 
 # Application definition
 
