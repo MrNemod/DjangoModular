@@ -41,6 +41,8 @@ def home(request):
     return render(request, 'PaginaCitas/Home.html', {'profesionales': profesionales})
 
 def Login(request):
+    error_message = None  # Define la variable error_message
+
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
@@ -50,8 +52,10 @@ def Login(request):
             return redirect('chat')  # Redirigir a la página de Chat después de iniciar sesión
         else:
             error_message = "Correo o contraseña incorrectos"
-            return render(request, 'PaginaCitas/Login.html', {'error_message': error_message})
-    return render(request, "PaginaCitas/Login.html")
+
+    # Pasa error_message al renderizar la plantilla
+    return render(request, 'PaginaCitas/Login.html', {'error_message': error_message})
+
 
 def Register(request):
     if request.method == 'POST':
