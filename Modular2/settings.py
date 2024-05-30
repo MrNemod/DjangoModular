@@ -106,9 +106,5 @@ AUTH_USER_MODEL = 'PaginaCitas.CustomUser'
 # Pagina de login
 LOGIN_URL = '/login/'
 
-# Url static
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
 # Backend autenticacion
 AUTHENTICATION_BACKENDS = ['PaginaCitas.auth_backends.EmailBackend', 'django.contrib.auth.backends.ModelBackend']
