@@ -60,10 +60,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'Modular2.wsgi.application'
 
 # Database
+# Utiliza el archivo de base de datos SQLite local
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL')
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, '../db.sqlite3'),  # Ajuste de la ruta al archivo SQLite
+    }
 }
 
 # Password validation
@@ -93,7 +95,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Ruta al directorio de archivos estáticos
+STATIC_ROOT = os.path.join(BASE_DIR, '../staticfiles')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
