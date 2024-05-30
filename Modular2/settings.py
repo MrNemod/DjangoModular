@@ -64,7 +64,7 @@ WSGI_APPLICATION = 'Modular2.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, '../db.sqlite3'),  # Ajuste de la ruta al archivo SQLite
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),  # Ajuste de la ruta al archivo SQLite
     }
 }
 
