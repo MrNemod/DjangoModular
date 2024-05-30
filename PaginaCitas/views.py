@@ -71,7 +71,7 @@ def Register(request):
     else:
         form = UserRegistrationForm()
     
-    return render(request, 'PaginaCitas/register.html', {'form': form})
+    return render(request, 'PaginaCitas/Register.html', {'form': form})
 
 def custom_logout(request):
     logout(request)
